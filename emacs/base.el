@@ -11,4 +11,4 @@
 (setq fill-column 79)
 
 ;; color-theme settings
-(color-theme-zenburn)
+(color-theme-molokai)
