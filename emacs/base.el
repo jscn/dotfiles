@@ -12,3 +12,12 @@
 
 ;; color-theme settings
 (color-theme-molokai)
+
+;; The fingers you have used to exits are too fat.
+(defun confirm-exit-emacs ()
+  "Ask for confirmation before exiting."
+  (interactive)
+  (if (yes-or-no-p "Are you sure you want to exit? ")
+      (save-buffers-kill-emacs)))
+(global-unset-key "\C-x\C-c")
+(global-set-key "\C-x\C-c" 'confirm-exit-emacs)
