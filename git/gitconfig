@@ -1,0 +1,14 @@
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  lg = log -p
+[user]
+	name = Josh Crompton
+	email = josh.crompton@gmail.com
+[credential]
+	helper = cache
+[color]
+	ui = true
