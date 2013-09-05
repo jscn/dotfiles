@@ -18,8 +18,6 @@
 ;; Don't allow lines > 79 character in length.
 (setq fill-column 79)
 
-;; color-theme settings
-(color-theme-molokai)
 
 ;; The fingers you have used to exits are too fat.
 (defun confirm-exit-emacs ()
