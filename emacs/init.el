@@ -38,3 +38,6 @@
       (save-buffers-kill-emacs)))
 (global-unset-key "\C-x\C-c")
 (global-set-key "\C-x\C-c" 'confirm-exit-emacs)
+
+;; No need for backup files, thanks.
+(setq make-backup-files nil)
