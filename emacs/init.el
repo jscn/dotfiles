@@ -18,6 +18,12 @@
 ;; Don't allow lines > 79 character in length.
 (setq fill-column 79)
 
+;; Set up package repos
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
 
 ;; The fingers you have used to exits are too fat.
 (defun confirm-exit-emacs ()
