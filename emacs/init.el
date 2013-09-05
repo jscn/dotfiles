@@ -25,6 +25,11 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 
+;; ido
+(require 'ido)
+(ido-mode t)
+(autopair-global-mode t)
+
 ;; The fingers you have used to exits are too fat.
 (defun confirm-exit-emacs ()
   "Ask for confirmation before exiting."
