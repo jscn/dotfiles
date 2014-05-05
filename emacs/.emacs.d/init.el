@@ -11,7 +11,18 @@
 ;; No splash screen.
 (setq inhibit-startup-message t)
 
-;; Font configuration
+;; Initialize cask for handling installation of required
+;; packages. This needs to be done early so that we can be sure all
+;; the required packages are installed.
+(require 'cask "~/.cask/cask.el")
+(cask-initialize)
+
+
+;; Tweak the visual aspects of the UI.
+
+(setq inhibit-startup-message t) ;; No splash screen.
+
+;; Set the font.
 (if (eq window-system 'x)
     (set-default-font "Liberation Mono 10"))
 
