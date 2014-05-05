@@ -8,8 +8,6 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
-;; No splash screen.
-(setq inhibit-startup-message t)
 
 ;; Initialize cask for handling installation of required
 ;; packages. This needs to be done early so that we can be sure all
@@ -26,22 +24,16 @@
 (if (eq window-system 'x)
     (set-default-font "Liberation Mono 10"))
 
-;; Don't allow lines > 79 character in length.
-(setq fill-column 79)
+(load-theme 'solarized-light t) ;; Set the theme.
 
-;; Set up package repos
-(require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-(package-initialize)
+(global-hl-line-mode +1) ;; Always highlight the current line.
+(global-linum-mode 1)    ;; Always display the line number in the left margin.
+(column-number-mode 1)   ;; Always display the column number in the modeline.
 
-;; ido
-(require 'ido)
-(ido-mode t)
-(autopair-global-mode t)
+(setq fill-column 79) ;; Don't allow lines > 79 character in length.
 
-;; The fingers you have used to exits are too fat.
+;; I'm always accidentally hitting the exit sequence, so I want to be
+;; asked to confirm before exiting.
 (defun confirm-exit-emacs ()
   "Ask for confirmation before exiting."
   (interactive)
@@ -50,5 +42,29 @@
 (global-unset-key "\C-x\C-c")
 (global-set-key "\C-x\C-c" 'confirm-exit-emacs)
 
-;; No need for backup files, thanks.
+
+;; Prevent saving of backup (*~) files.
 (setq make-backup-files nil)
+
+
+;; ido
+(require 'ido)
+(ido-mode t)
+
+;; autoapair
+(require 'autopair)
+(autopair-global-mode t)
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
