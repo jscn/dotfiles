@@ -12,7 +12,7 @@ Procedure to update a new user account with these dotfiles:
 
 1. Check out the repository to ~/dotfiles
 2. cd ~/dotfiles
-3. stow <application>
+3. stow <application> -t /home/jscn/
 
    This will automatically symlink whatever files live inside the application's
    directory into `~/`
