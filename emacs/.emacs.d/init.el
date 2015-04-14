@@ -57,7 +57,7 @@
 
 
 ;; never use tabs, always use spaces.
-(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 
 (custom-set-variables
