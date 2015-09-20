@@ -7,7 +7,7 @@
   lg = log -p
 [user]
 	name = Josh Crompton
-	email = josh.crompton@gmail.com
+	email = jcrompton@infoxchange.org
 [credential]
 	helper = cache
 [color]
