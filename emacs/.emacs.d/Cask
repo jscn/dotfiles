@@ -3,6 +3,7 @@
 
 (depends-on "autopair")
 (depends-on "solarized-theme")
+(depends-on "web-mode")
 
 ;; TODO: tidy up these auto-generated dependencies:
 (depends-on "bind-key")
@@ -27,5 +28,4 @@
 (depends-on "smartparens")
 (depends-on "smex")
 (depends-on "use-package")
-(depends-on "web-mode")
 (depends-on "yasnippet")
