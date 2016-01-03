@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: nose set trace
+# key: nst
+# binding: direct-keybinding
+# --
+from nose.tools import set_trace; set_trace()

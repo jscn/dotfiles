@@ -59,6 +59,10 @@
 ;; never use tabs, always use spaces.
 (setq-default indent-tabs-mode nil)
 
+;; Yasnippet
+(setq yas-snippet-dirs
+      '("~/emacs.d/snippets"
+        ))
 
 ;; Attempt to be able to use tramp to access files on a docker container
 ;; Open files in Docker containers like so: /docker:drunk_bardeen:/etc/passwd
