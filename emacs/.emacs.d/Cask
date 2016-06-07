@@ -1,7 +1,9 @@
 (source gnu)
 (source melpa)
 
+(depends-on "auto-complete")
 (depends-on "autopair")
+(depends-on "projectile")
 (depends-on "solarized-theme")
 (depends-on "web-mode")
 
@@ -23,7 +25,6 @@
 (depends-on "pallet")
 (depends-on "popwin")
 (depends-on "prodigy")
-(depends-on "projectile")
 (depends-on "s")
 (depends-on "smartparens")
 (depends-on "smex")

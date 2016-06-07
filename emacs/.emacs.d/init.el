@@ -1,22 +1,39 @@
-;; Base configuration goes here. Any sections which get unruly should
-;; be broken out into their own file. Override settings for a
-;; particular machine with a hostname.el file in the ~/.emacs.d
-;; directory.
-
 ;; Turn off mouse interface early in startup to avoid momentary display.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-;; Initialize cask for handling installation of required
+;; Initialise cask for handling installation of required
 ;; packages. This needs to be done early so that we can be sure all
 ;; the required packages are installed.
 (require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 
-;; Tweak the visual aspects of the UI.
+;; Initialise other packages. Again, do this as early as possible to
+;; ensure that the packages are loaded and ready before we apply any
+;; of our own customisations.
+
+(require 'auto-complete-config)
+(ac-config-default)
+
+(require 'autopair)
+(autopair-global-mode t)
+
+(require 'ido)
+(ido-mode t)
+
+(require 'projectile)
+(projectile-global-mode)
+
+(require 'tramp)
+(require 'web-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tweak the visual aspects of the UI. ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq inhibit-startup-message t) ;; No splash screen.
 
@@ -46,16 +63,6 @@
 ;; Prevent saving of backup (*~) files.
 (setq make-backup-files nil)
 
-
-;; ido
-(require 'ido)
-(ido-mode t)
-
-;; autoapair
-(require 'autopair)
-(autopair-global-mode t)
-
-
 ;; never use tabs, always use spaces.
 (setq-default indent-tabs-mode nil)
 
@@ -63,8 +70,6 @@
 ;; Attempt to be able to use tramp to access files on a docker container
 ;; Open files in Docker containers like so: /docker:drunk_bardeen:/etc/passwd
 ;; Note: this came from http://www.emacswiki.org/emacs/TrampAndDocker
-(require 'tramp)
-
 (push
  (cons
   "docker"
@@ -88,7 +93,6 @@
 
 
 ;; Configure web-mode
-(require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.module\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
