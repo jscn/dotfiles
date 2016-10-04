@@ -1,40 +1,71 @@
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 ;; Turn off mouse interface early in startup to avoid momentary display.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 
-;; Initialise cask for handling installation of required
-;; packages. This needs to be done early so that we can be sure all
-;; the required packages are installed.
-(require 'cask "~/.cask/cask.el")
-(cask-initialize)
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Package management. ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'package)
+
+;; Add melpa to our list of sources for packages.
+(setq package-enable-at-startup nil)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+;; Bootstrap `use-package` to automatically install missing packages.
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 
 ;; Initialise other packages. Again, do this as early as possible to
 ;; ensure that the packages are loaded and ready before we apply any
 ;; of our own customisations.
 
-(require 'auto-complete-config)
-(ac-config-default)
+(use-package auto-complete
+  :ensure t
+  :config
+  (ac-config-default))
 
-(require 'autopair)
-(autopair-global-mode t)
+(use-package autopair
+  :ensure t
+  :config
+  (autopair-global-mode t))
 
-(require 'ido)
-(ido-mode t)
+(use-package ido
+  :ensure t
+  :config
+  (ido-mode t))
 
-(require 'projectile)
-(projectile-global-mode)
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-global-mode))
 
-(require 'tramp)
-(require 'web-mode)
+(use-package tramp
+  :ensure t)
+
+(use-package web-mode
+  :ensure t)
+
+(use-package solarized-theme
+  :ensure t
+  :config
+  (load-theme 'solarized-light t))
+
+(use-package magit
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -46,8 +77,6 @@
 ;; Set the font.
 (if (eq window-system 'x)
     (set-default-font "Liberation Mono 10"))
-
-(load-theme 'solarized-light t) ;; Set the theme.
 
 (global-hl-line-mode +1) ;; Always highlight the current line.
 (global-linum-mode 1)    ;; Always display the line number in the left margin.
