@@ -41,15 +41,31 @@
   :config
   (autopair-global-mode t))
 
+(use-package feature-mode
+  :ensure t)
+
+(use-package git-timemachine
+  :ensure t)
+
 (use-package ido
   :ensure t
   :config
   (ido-mode t))
 
+(use-package magit
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x g") 'magit-status))
+
 (use-package projectile
   :ensure t
   :config
   (projectile-global-mode))
+
+(use-package apropospriate-theme
+  :ensure t
+  :config
+  (load-theme 'apropospriate-dark t))
 
 (use-package tramp
   :ensure t)
@@ -57,15 +73,10 @@
 (use-package web-mode
   :ensure t)
 
-(use-package solarized-theme
+(use-package yaml-mode
   :ensure t
   :config
-  (load-theme 'solarized-light t))
-
-(use-package magit
-  :ensure t
-  :config
-  (global-set-key (kbd "C-x g") 'magit-status))
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -150,10 +161,17 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default))))
+ '(custom-safe-themes
+   (quote
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
+ '(package-selected-packages
+   (quote
+    (apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'set-goal-column 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
