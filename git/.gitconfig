@@ -19,4 +19,4 @@
 	default = simple
 [core]
 	excludesfile = /home/jscn/.gitignore_global
-	editor = emacs
+	editor = emacsclient -c
