@@ -125,6 +125,8 @@
 ;; never use tabs, always use spaces.
 (setq-default indent-tabs-mode nil)
 
+;; enable <Shift+arrow> to move between windows.
+(windmove-default-keybindings)
 
 ;; Attempt to be able to use tramp to access files on a docker container
 ;; Open files in Docker containers like so: /docker:drunk_bardeen:/etc/passwd
