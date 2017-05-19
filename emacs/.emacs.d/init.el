@@ -78,6 +78,19 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(use-package dockerfile-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
 
 ; Some initial langauges we want org-babel to support
 (org-babel-do-load-languages
@@ -128,6 +141,8 @@
 ;; never use tabs, always use spaces.
 (setq-default indent-tabs-mode nil)
 
+;; enable <Shift+arrow> to move between windows.
+(windmove-default-keybindings)
 
 ;; Attempt to be able to use tramp to access files on a docker container
 ;; Open files in Docker containers like so: /docker:drunk_bardeen:/etc/passwd
@@ -172,6 +187,10 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 
+;; Configure JavaScript mode
+(setq js-indent-level 2)
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -182,7 +201,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(package-selected-packages
    (quote
-    (apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
