@@ -91,6 +91,11 @@
   :config
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
 
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; elm-mode
+(require 'elm-mode)
 
 ; Some initial langauges we want org-babel to support
 (org-babel-do-load-languages
@@ -186,11 +191,39 @@
 )
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
-
-;; Configure JavaScript mode
+;; javascript mode
 (setq js-indent-level 2)
 
+;; org mode customisations
 
+(setq org-hide-emphasis-markers t) ;; hide '/' and '*' around emphasised text
+
+;; Add GTD files to the agenda.
+(setq org-agenda-files '("~/org/gtd/inbox.org"
+                         "~/org/gtd/gtd.org"
+                         "~/org/gtd/tickler.org"))
+
+;; C-c c adds todos to inbox.org
+(setq org-capture-templates '(("t" "Todo [inbox]" entry
+                               (file+headline "~/gtd/inbox.org" "Tasks")
+                               "* TODO %i%?")
+                              ("T" "Tickler" entry
+                               (file+headline "~/gtd/tickler.org" "Tickler")
+                               "* %i%? \n %U")))
+
+;; C-c C-w refiles inbox.org to gtd, someday or tickler.
+(setq org-refile-targets '(("~/gtd/gtd.org" :maxlevel . 3)
+                           ("~/gtd/someday.org" :level . 1)
+                           ("~/gtd/tickler.org" :maxlevel . 2)))
+
+(setq org-todo-keywords '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+;; bullets!
+
+;; use • in place of * and -
+(font-lock-add-keywords 'org-mode
+                        '(("^ +\\([-*]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
