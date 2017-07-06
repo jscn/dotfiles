@@ -205,10 +205,10 @@
 
 ;; C-c c adds todos to inbox.org
 (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                               (file+headline "~/gtd/inbox.org" "Tasks")
+                               (file+headline "~/org/gtd/inbox.org" "Tasks")
                                "* TODO %i%?")
                               ("T" "Tickler" entry
-                               (file+headline "~/gtd/tickler.org" "Tickler")
+                               (file+headline "~/org/gtd/tickler.org" "Tickler")
                                "* %i%? \n %U")))
 
 ;; C-c C-w refiles inbox.org to gtd, someday or tickler.
