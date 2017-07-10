@@ -187,6 +187,11 @@
 
 (setq org-hide-emphasis-markers t) ;; hide '/' and '*' around emphasised text
 
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 ;; Add GTD files to the agenda.
 (setq org-agenda-files '("~/org/gtd/inbox.org"
                          "~/org/gtd/gtd.org"
@@ -194,10 +199,10 @@
 
 ;; C-c c adds todos to inbox.org
 (setq org-capture-templates '(("t" "Todo [inbox]" entry
-                               (file+headline "~/gtd/inbox.org" "Tasks")
+                               (file+headline "~/org/gtd/inbox.org" "Tasks")
                                "* TODO %i%?")
                               ("T" "Tickler" entry
-                               (file+headline "~/gtd/tickler.org" "Tickler")
+                               (file+headline "~/org/gtd/tickler.org" "Tickler")
                                "* %i%? \n %U")))
 
 ;; C-c C-w refiles inbox.org to gtd, someday or tickler.
