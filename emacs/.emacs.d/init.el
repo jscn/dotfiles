@@ -31,6 +31,11 @@
 ;; ensure that the packages are loaded and ready before we apply any
 ;; of our own customisations.
 
+(use-package apropospriate-theme
+  :ensure t
+  :config
+  (load-theme 'apropospriate-dark t))
+
 (use-package auto-complete
   :ensure t
   :config
@@ -41,10 +46,21 @@
   :config
   (autopair-global-mode t))
 
+(use-package dockerfile-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
+(use-package elm-mode
+  :ensure t)
+
 (use-package feature-mode
   :ensure t)
 
 (use-package git-timemachine
+  :ensure t)
+
+(use-package graphviz-dot-mode
   :ensure t)
 
 (use-package ido
@@ -57,15 +73,22 @@
   :config
   (global-set-key (kbd "C-x g") 'magit-status))
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(use-package org-bullets
+  :ensure t)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
 (use-package projectile
   :ensure t
   :config
   (projectile-global-mode))
-
-(use-package apropospriate-theme
-  :ensure t
-  :config
-  (load-theme 'apropospriate-dark t))
 
 (use-package tramp
   :ensure t)
@@ -77,29 +100,6 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
-(use-package dockerfile-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
-
-(use-package graphviz-dot-mode
-  :ensure t)
-
-(use-package org-bullets
-  :ensure t)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(use-package elm-mode
-  :ensure t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
