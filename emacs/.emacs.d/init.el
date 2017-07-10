@@ -94,11 +94,12 @@
 (use-package graphviz-dot-mode
   :ensure t)
 
-(require 'org-bullets)
+(use-package org-bullets
+  :ensure t)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
-;; elm-mode
-(require 'elm-mode)
+(use-package elm-mode
+  :ensure t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -234,7 +235,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(package-selected-packages
    (quote
-    (graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (elm-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
