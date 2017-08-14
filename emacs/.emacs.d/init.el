@@ -196,11 +196,6 @@
 
 (setq org-hide-emphasis-markers t) ;; hide '/' and '*' around emphasised text
 
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
-
 ;; Add GTD files to the agenda.
 (setq org-agenda-files '("~/org/gtd/inbox.org"
                          "~/org/gtd/gtd.org"
