@@ -1,3 +1,4 @@
+#! /usr/bin/bash
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -137,3 +138,7 @@ export PYTHONDONTWRITEBYTECODE=1
 alias gg="gitg &disown"
 
 alias wikiup="docker run --name wiki -d -v /srv/moinmoin:/usr/local/share/moin/data dperson/moinmoin && docker run --name web --link wiki:wiki -p 80:80 -p 443:443 -d dperson/nginx -u 'wiki:3031;/wiki'"
+
+function jd() {
+    diff -u --color <(jq -S . "$1") <(jq -S . "$2");
+}
