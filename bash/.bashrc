@@ -142,3 +142,8 @@ alias wikiup="docker run --name wiki -d -v /srv/moinmoin:/usr/local/share/moin/d
 function jd() {
     diff -u --color <(jq -S . "$1") <(jq -S . "$2");
 }
+
+# nvm configuration
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
