@@ -129,6 +129,39 @@
   :ensure t)
 
 
+;; LSP-mode!
+
+(use-package lsp-mode
+  :ensure t
+  :hook (java-mode . lsp)
+  :commands lsp)
+
+(use-package lsp-java
+  :ensure t)  ;; Java mode
+
+;; extras
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)  ;; flycheck integration
+;; (use-package company-lsp :commands company-lsp)  ;; company-mode for completeion
+(use-package helm-lsp
+  :ensure t
+  :commands helm-lsp-workspace-symbol)  ;; type completion for xref-apropos ??
+(use-package lsp-treemacs
+  :ensure t
+  :commands lsp-treemacs-errors-list)  ;; project wide error overview ??
+(use-package dap-mode
+  :ensure t
+  :after lsp-mode
+  :config
+  (dap-mode t)
+  (dap-ui-mode t))  ;; debugger integration
+
+(use-package dap-java
+  :ensure t
+  :after (lsp-java))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tweak the visual aspects of the UI. ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -296,7 +329,7 @@
     ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "70f5a47eb08fe7a4ccb88e2550d377ce085fedce81cf30c56e3077f95a2909f2" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(package-selected-packages
    (quote
-    (geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
