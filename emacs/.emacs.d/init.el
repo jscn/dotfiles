@@ -36,10 +36,9 @@
   :config
   (load-theme 'apropospriate-dark t))
 
-(use-package auto-complete
-  :ensure t
-  :config
-  (ac-config-default))
+(use-package company
+  :ensure t)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (use-package autopair
   :ensure t
@@ -128,6 +127,8 @@
 (use-package paredit
   :ensure t)
 
+(use-package yasnippet
+  :ensure t)
 
 ;; LSP-mode!
 
@@ -137,13 +138,16 @@
   :commands lsp)
 
 (use-package lsp-java
-  :ensure t)  ;; Java mode
+  :ensure t :after lsp
+  :config (add-hook 'java-mode-hook 'lsp));; Java mode
 
 ;; extras
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)  ;; flycheck integration
-;; (use-package company-lsp :commands company-lsp)  ;; company-mode for completeion
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)  ;; company-mode for completeion
 (use-package helm-lsp
   :ensure t
   :commands helm-lsp-workspace-symbol)  ;; type completion for xref-apropos ??
@@ -329,7 +333,7 @@
     ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "70f5a47eb08fe7a4ccb88e2550d377ce085fedce81cf30c56e3077f95a2909f2" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(package-selected-packages
    (quote
-    (dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
