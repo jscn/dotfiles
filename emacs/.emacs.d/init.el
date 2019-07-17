@@ -67,6 +67,9 @@
 (use-package graphviz-dot-mode
   :ensure t)
 
+(use-package geiser
+  :ensure t)
+
 (use-package ido
   :ensure t
   :config
@@ -94,6 +97,11 @@
   :config
   (projectile-global-mode))
 
+(use-package rust-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode)))
+
 (use-package tramp
   :ensure t)
 
@@ -112,6 +120,12 @@
   :ensure t)
 
 (use-package flycheck
+  :ensure t)
+
+(use-package cider
+  :ensure t)
+
+(use-package paredit
   :ensure t)
 
 
@@ -173,8 +187,7 @@
 
 (defadvice tramp-completion-handle-file-name-all-completions
   (around dotemacs-completion-docker activate)
-  "(tramp-completion-handle-file-name-all-completions \"\" \"/docker:\" returns
-    a list of active Docker container names, followed by colons."
+  "(tramp-completion-handle-file-name-all-completions \"\" \"/docker:\" return a list of active Docker container names, followed by colons."
   (if (equal (ad-get-arg 1) "/docker:")
       (let* ((dockernames-raw (shell-command-to-string "docker ps | perl -we 'use strict; $_ = <>; m/^(.*)NAMES/ or die; my $offset = length($1); while(<>) {substr($_, 0, $offset, q()); chomp; for(split m/\\W+/) {print qq($_:\n)} }'"))
              (dockernames (cl-remove-if-not
@@ -267,7 +280,7 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
-   (sh . t)
+   ;; (sh . t)
    (python . t)
    (sqlite . t)
    ))
@@ -283,7 +296,7 @@
     ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "70f5a47eb08fe7a4ccb88e2550d377ce085fedce81cf30c56e3077f95a2909f2" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
  '(package-selected-packages
    (quote
-    (flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
