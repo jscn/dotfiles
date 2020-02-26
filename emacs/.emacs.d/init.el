@@ -255,6 +255,7 @@
 (add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vsl?\\'" . web-mode))
 
 (defun my-web-mode-hook ()
   "Hooks for Web mode."
