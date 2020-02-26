@@ -156,7 +156,9 @@
 
 (use-package company-lsp
   :ensure t
-  :commands company-lsp)  ;; company-mode for completeion
+  :commands company-lsp)  ;; company-mode for completion
+(push 'company-lsp company-backends)
+
 (use-package helm-lsp
   :ensure t
   :commands helm-lsp-workspace-symbol)  ;; type completion for xref-apropos ??
@@ -172,9 +174,10 @@
   (dap-mode t)
   (dap-ui-mode t))  ;; debugger integration
 
-(use-package dap-java
-  :ensure t
-  :after (lsp-java))
+;; Appears to be part of lsp-java?
+;; (use-package dap-java
+;;   :ensure t
+;;   :after (lsp-java))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
