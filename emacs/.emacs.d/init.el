@@ -147,21 +147,24 @@
 
 (use-package lsp-java
   :ensure t :after lsp
-  :config (add-hook 'java-mode-hook 'lsp));; Java mode
+  :config (add-hook 'java-mode-hook 'lsp)) ;; Java mode
 
 ;; extras
 (use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)  ;; flycheck integration
+
 (use-package company-lsp
   :ensure t
   :commands company-lsp)  ;; company-mode for completeion
 (use-package helm-lsp
   :ensure t
   :commands helm-lsp-workspace-symbol)  ;; type completion for xref-apropos ??
+
 (use-package lsp-treemacs
   :ensure t
   :commands lsp-treemacs-errors-list)  ;; project wide error overview ??
+
 (use-package dap-mode
   :ensure t
   :after lsp-mode
