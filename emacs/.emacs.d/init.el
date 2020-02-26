@@ -1,3 +1,12 @@
+;;; package ---- Summary
+;;;
+;;; Commentary:
+;;;
+;;; This is my init.el.
+;;; There are many like it, but this one is mine.
+
+;;; Code:
+
 ;; Turn off mouse interface early in startup to avoid momentary display.
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -15,10 +24,9 @@
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/"))
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+;; Added by Package.el. This must come before configurations of installed
+;; packages. Don't delete this line. If you don't want it, just comment it out
+;; by adding a semicolon to the start of the line.
 (package-initialize)
 
 ;; Bootstrap `use-package` to automatically install missing packages.
