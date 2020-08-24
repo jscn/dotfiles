@@ -160,8 +160,10 @@ if [ -f `which powerline-daemon` ]; then
 fi
 
 # pyenv
-export PATH="/home/jscn/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+if [ "$HOSTNAME" -ne "jscn-thinkpad"]; then
+  export PATH="/home/jscn/.pyenv/bin:$PATH"
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
