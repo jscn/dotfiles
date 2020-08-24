@@ -138,6 +138,10 @@
 (use-package yasnippet
   :ensure t)
 
+(use-package exec-path-from-shell
+  :ensure t
+  :after exec-path-from-shell-initialize)
+
 (defun setup-tide-mode()
   "Configure tide mode."
   (interactive)
