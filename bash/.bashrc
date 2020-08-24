@@ -167,3 +167,4 @@ if [ "$HOSTNAME" -ne "jscn-thinkpad"]; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+export EDITOR="emacsclient"
