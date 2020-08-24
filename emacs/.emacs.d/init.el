@@ -327,7 +327,7 @@
  '(elm-format-on-save t)
  '(package-selected-packages
    (quote
-    (elm-mode yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (exec-path-from-shell exec-path-from-shell-initialize dap-typescript elm-mode yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
