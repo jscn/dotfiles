@@ -138,47 +138,21 @@
 (use-package yasnippet
   :ensure t)
 
-;; LSP-mode!
+(defun setup-tide-mode()
+  "Configure tide mode."
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (tide-hl-identifier-mode +1)
+  (company-mode +1))
 
-(use-package lsp-mode
+(use-package tide
   :ensure t
-  :hook (java-mode . lsp)
-  :commands lsp)
-
-(use-package lsp-java
-  :ensure t :after lsp
-  :config (add-hook 'java-mode-hook 'lsp)) ;; Java mode
-
-;; extras
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode)  ;; flycheck integration
-
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)  ;; company-mode for completion
-(push 'company-lsp company-backends)
-
-(use-package helm-lsp
-  :ensure t
-  :commands helm-lsp-workspace-symbol)  ;; type completion for xref-apropos ??
-
-(use-package lsp-treemacs
-  :ensure t
-  :commands lsp-treemacs-errors-list)  ;; project wide error overview ??
-
-(use-package dap-mode
-  :ensure t
-  :after lsp-mode
-  :config
-  (dap-mode t)
-  (dap-ui-mode t))  ;; debugger integration
-
-;; Appears to be part of lsp-java?
-;; (use-package dap-java
-;;   :ensure t
-;;   :after (lsp-java))
-
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tweak the visual aspects of the UI. ;;
