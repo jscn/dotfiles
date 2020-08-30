@@ -44,9 +44,14 @@
   :config
   (load-theme 'apropospriate-dark t))
 
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode))
+
 (use-package company
-  :ensure t)
-(add-hook 'after-init-hook 'global-company-mode)
+  :ensure t
+  :hook (after-init . global-company-mode))
 
 (use-package autopair
   :ensure t
@@ -63,10 +68,6 @@
 
 (use-package feature-mode
   :ensure t)
-
-(use-package flycheck
-  :ensure t)
-(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (use-package git-timemachine
   :ensure t)
@@ -140,7 +141,7 @@
 
 (use-package exec-path-from-shell
   :ensure t
-  :after exec-path-from-shell-initialize)
+  :config (exec-path-from-shell-initialize))
 
 (defun setup-tide-mode()
   "Configure tide mode."
@@ -153,7 +154,7 @@
 
 (use-package tide
   :ensure t
-  :after (typescript-mode company flycheck)
+  :after (typescript-mode company flycheck exec-path-from-shell)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
          (before-save . tide-format-before-save)))
