@@ -143,6 +143,16 @@
   :ensure t
   :config (exec-path-from-shell-initialize))
 
+(use-package protobuf-mode,
+  :ensure t)
+
+(defconst evnex-protobuf-style
+  '((c-basic-offset . 4)
+    (indent-tabs-mode . nil)))
+
+(add-hook 'protobuf-mode-hook
+          (lambda () (c-add-style "evnex-style" evnex-protobuf-style t)))
+
 (defun setup-tide-mode()
   "Configure tide mode."
   (interactive)
