@@ -39,10 +39,10 @@
 ;; ensure that the packages are loaded and ready before we apply any
 ;; of our own customisations.
 
-(use-package apropospriate-theme
+(use-package solarized-theme
   :ensure t
   :config
-  (load-theme 'apropospriate-dark t))
+  (load-theme 'solarized-light t))
 
 (use-package flycheck
   :ensure t
