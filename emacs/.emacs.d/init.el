@@ -246,7 +246,7 @@
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
 ;; javascript mode
-(setq js-indent-level 2)
+(setq js-indent-level 4)
 
 ;; Relatedly, use the local installation of `standard` for flychecking JavaScript
 ;; stolen from https://github.com/lunaryorn/old-emacs-configuration/blob/27719411de8207e51690f14baffbab27a5b26f66/init.el
