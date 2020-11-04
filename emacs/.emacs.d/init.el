@@ -127,9 +127,6 @@
 (use-package nginx-mode
   :ensure t)
 
-(use-package flycheck
-  :ensure t)
-
 (use-package cider
   :ensure t)
 
@@ -181,6 +178,52 @@
   :config
   (setq org-journal-dir "~/Documents/.journal/"
         org-journal-date-format "%A, %d %B %Y"))
+
+
+;; Scala setup
+
+;;;; Enable scala-mode for highlighting, indentation and motion commands
+
+(use-package scala-mode
+  :ensure t
+  :interpreter
+    ("scala" . scala-mode))
+
+;;;; Enable sbt mode for executing sbt commands
+(use-package sbt-mode
+  :ensure t
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: https://github.com/ensime/emacs-sbt-mode/issues/31
+  ;; allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map)
+   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
+   (setq sbt:program-options '("-Dsbt.supershell=false"))
+   )
+
+(use-package lsp-mode
+  :ensure t
+  ;; Optional - enable lsp-mode automatically in scala files
+  :hook  (scala-mode . lsp)
+         (lsp-mode . lsp-lens-mode)
+         :config (setq lsp-prefer-flymake nil))
+
+;;;; Add metals backend for lsp-mode
+(use-package lsp-metals
+  :ensure t
+  :config (setq lsp-metals-treeview-show-when-views-received t))
+
+;;;; Enable nice rendering of documentation on hover
+(use-package lsp-ui
+  :ensure t)
+
+;;;; Add company-lsp backend for metals
+(use-package company-lsp
+  :ensure t)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tweak the visual aspects of the UI. ;;
@@ -351,7 +394,7 @@
  '(elm-format-on-save t)
  '(package-selected-packages
    (quote
-    (protobuf-mode prettier-js org-journal exec-path-from-shell exec-path-from-shell-initialize dap-typescript elm-mode yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+    (lsp-metals sbt-mode scala-mode protobuf-mode prettier-js org-journal exec-path-from-shell exec-path-from-shell-initialize dap-typescript elm-mode yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
