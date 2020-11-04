@@ -153,6 +153,9 @@
 (add-hook 'protobuf-mode-hook
           (lambda () (c-add-style "evnex-style" evnex-protobuf-style t)))
 
+(use-package prettier-js
+  :ensure t)
+
 (defun setup-tide-mode()
   "Configure tide mode."
   (interactive)
