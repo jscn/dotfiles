@@ -162,16 +162,15 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (tide-hl-identifier-mode +1)
-  (company-mode +1)
-  (local-set-key (kbd "C-c t i") 'tide-organize-imports)
-  (local-set-key (kbd "C-c t s") 'tide-rename-symbol))
+  (company-mode +1))
 
 (use-package tide
   :ensure t
   :after (typescript-mode company flycheck exec-path-from-shell)
   :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+         (typescript-mode . tide-hl-identifier-mode))
+  :bind (("C-c t i" . tide-organize-imports)
+         ("C-c t s" . tide-rename-symbol)))
 
 (use-package org-journal
   :ensure t
