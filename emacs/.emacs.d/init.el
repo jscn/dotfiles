@@ -161,7 +161,9 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (tide-hl-identifier-mode +1)
-  (company-mode +1))
+  (company-mode +1)
+  (local-set-key (kbd "C-c t i") 'tide-organize-imports)
+  (local-set-key (kbd "C-c t s") 'tide-rename-symbol))
 
 (use-package tide
   :ensure t
