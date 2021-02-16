@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Jest `it`
+# key: jit
+# --
+it('$1', () => {$0});
