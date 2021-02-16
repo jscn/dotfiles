@@ -141,7 +141,7 @@
   :ensure t
   :config (exec-path-from-shell-initialize))
 
-(use-package protobuf-mode,
+(use-package protobuf-mode
   :ensure t)
 
 (defconst evnex-protobuf-style
