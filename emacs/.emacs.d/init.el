@@ -227,7 +227,6 @@
 (use-package company-lsp
   :ensure t)
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Tweak the visual aspects of the UI. ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -258,13 +257,16 @@
 ;; Prevent saving of backup (*~) files.
 (setq make-backup-files nil)
 
-;; Store backups and auto-saved files in TEMPORARY-FILE-DIRECTORY
-;; (which defaults to /tmp on Unix), instead of in the same directory
-;; as the file.
+;; Store backups in TEMPORARY-FILE-DIRECTORY (which defaults to /tmp
+;; on Unix), instead of in the same directory as the file.
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+
+;; Completely disable auto-save, it causes build processes which watch
+;; a project (e.g., JavaScripte/TypeScript) to break.(
+(setq auto-save-default nil)
+;; Same for lockfiles
+(setq create-lockfiles nil)
 
 ;; never use tabs, always use spaces.
 (setq-default indent-tabs-mode nil)
@@ -375,12 +377,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   (quote
-    ("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "70f5a47eb08fe7a4ccb88e2550d377ce085fedce81cf30c56e3077f95a2909f2" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default)))
+   '("c3e6b52caa77cb09c049d3c973798bc64b5c43cc437d449eacf35b3e776bf85c" "5a0eee1070a4fc64268f008a4c7abfda32d912118e080e18c3c865ef864d1bea" "70f5a47eb08fe7a4ccb88e2550d377ce085fedce81cf30c56e3077f95a2909f2" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "e16a771a13a202ee6e276d06098bc77f008b73bbac4d526f160faa2d76c1dd0e" default))
  '(elm-format-on-save t)
+ '(make-backup-files nil)
  '(package-selected-packages
-   (quote
-    (prettier add-node-modules-path tide lsp-metals sbt-mode scala-mode protobuf-mode org-journal exec-path-from-shell exec-path-from-shell-initialize dap-typescript elm-mode yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete))))
+   '(typescript-mode tree-sitter tree-sitter-langs unicode-fonts prettier add-node-modules-path tide lsp-metals sbt-mode scala-mode protobuf-mode org-journal exec-path-from-shell exec-path-from-shell-initialize dap-typescript elm-mode yasnippet company-lsp company company-mode dap-java lsp-java dap-mode lsp-treemacs helm-lsp lsp-mode lsp-ui geiser rust-mode paredit cider flycheck nginx-mode go-mode org-bullets graphviz-dot-mode dockerfile-mode markdown-mode apropospriate-theme git-timemachine feature-mode yaml-mode web-mode use-package solarized-theme projectile magit autopair auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
