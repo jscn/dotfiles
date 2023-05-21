@@ -236,7 +236,7 @@
 
 ;; Set the font.
 (if (eq window-system 'x)
-    (set-frame-font "Liberation Mono 10"))
+    (set-frame-font "Liberation Mono 12"))
 
 (global-hl-line-mode +1) ;; Always highlight the current line.
 (global-linum-mode 1)    ;; Always display the line number in the left margin.
