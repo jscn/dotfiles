@@ -158,3 +158,26 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export EDITOR="emacsclient"
 
 # export PROMPT_COMMAND='if [ "$(id -u)" -ne 0 ]; then echo "$(date "+%Y-%m-%d.%H:%M:%S") $(pwd) $(history 1)" >> ~/.logs/bash-history-$(date "+%Y-%m-%d").log; fi'
+. "$HOME/.cargo/env"
+
+# React Native settings for Android Studio
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# enable direnv - https://direnv.net/
+eval "$(direnv hook bash)"
+
+# :(
+alias evnex="pipenv run python -m evnex"
+
+# restrict Node memory usage to force more frequent garbage collection
+export NODE_OPTIONS='--max-old-space-size=2048'
+
+# todo.txt
+alias t='todo-txt'
+
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:/home/jscn/go
