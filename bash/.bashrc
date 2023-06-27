@@ -123,12 +123,6 @@ fi
 # added by travis gem
 [ -f /home/jscn/.travis/travis.sh ] && source /home/jscn/.travis/travis.sh
 
-# enable direnv - https://direnv.net/
-eval "$(direnv hook bash)"
-
-# ensure node binaries are available
-export PATH="./node_modules/.bin:$PATH"
-
 # Ensure ruby gem binaries are available
 export PATH="/home/jscn/.gem/ruby/2.3.0/bin:$PATH"
 
@@ -139,8 +133,6 @@ export PATH="/home/jscn/work/adr-tools/src:$PATH"
 export PYTHONDONTWRITEBYTECODE=1
 
 alias gg="gitg &disown"
-
-alias wikiup="docker run --name wiki -d -v /srv/moinmoin:/usr/local/share/moin/data dperson/moinmoin && docker run --name web --link wiki:wiki -p 80:80 -p 443:443 -d dperson/nginx -u 'wiki:3031;/wiki'"
 
 function jd() {
     diff -u --color <(jq -S . "$1") <(jq -S . "$2");
