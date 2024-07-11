@@ -12,6 +12,18 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+;; golang configuration. see https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
+(require 'project)
+
+(defun project-find-go-module (dir)
+  (when-let ((root (locate-dominating-file dir "go.mod")))
+    (cons 'go-module root)))
+
+(cl-defmethod project-root ((project (head go-module)))
+  (cdr project))
+
+(add-hook 'project-find-functions #'project-find-go-module)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package management. ;;
@@ -128,8 +140,6 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
-(use-package go-mode
-  :ensure t)
 
 (use-package nginx-mode
   :ensure t)
