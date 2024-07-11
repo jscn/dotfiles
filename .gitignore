@@ -12,3 +12,4 @@ emacs/.emacs.d/transient
 emacs/.emacs.d/.lsp-session*
 emacs/.emacs.d/eln-cache*
 emacs/.emacs.d/projects
+emacs/.emacs.d/tree-sitter
