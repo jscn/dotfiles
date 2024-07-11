@@ -161,7 +161,11 @@ export EDITOR="emacsclient"
 . "$HOME/.cargo/env"
 
 # React Native settings for Android Studio
-export ANDROID_HOME=$HOME/Android/Sdk
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export ANDROID_HOME=$HOME/Library/Android/sdk
+else
+    export ANDROID_HOME=$HOME/Android/Sdk
+fi
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
