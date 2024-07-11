@@ -51,10 +51,15 @@
 ;; ensure that the packages are loaded and ready before we apply any
 ;; of our own customisations.
 
-(use-package solarized-theme
+;; (use-package solarized-theme
+;;   :ensure t
+;;   :config
+;;   (load-theme 'solarized-light t))
+
+(use-package nord-theme
   :ensure t
   :config
-  (load-theme 'solarized-light t))
+  (load-theme 'nord t))
 
 (use-package flycheck
   :ensure t
