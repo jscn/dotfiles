@@ -1,0 +1,34 @@
+# -*- mode: snippet -*-
+# name: Custom Error
+# key: err
+# --
+export class $0 extends Error {
+	/**
+	 * @param asserter The assertion function that threw the error. Removes stack-trace noise if provided.
+	 */
+	constructor(message: string, asserter?: Function) {
+		super(message);
+		Error.captureStackTrace?.(this, asserter || this.constructor);
+	}
+}
+
+export function is$0(err: any): err is $0 {
+	return err instanceof $0;
+}
+
+/**
+ * @param cause The cause of the error, e.g. a different, caught error
+ */
+export function assert$1(
+	condition: any,
+	message: string,
+	cause?: any,
+): asserts condition {
+	if (!condition) {
+		const err = new $0(message, assert$1);
+		if (cause) {
+			err.cause = cause;
+		}
+		throw err;
+	}
+}
