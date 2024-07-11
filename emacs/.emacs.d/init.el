@@ -66,7 +66,7 @@
   :init
   (global-flycheck-mode))
 ;; enable typescript-tslint checker
-(flycheck-add-mode 'typescript-tslint 'web-mode)
+;;(flycheck-add-mode 'typescript-tslint 'web-mode)
 
 (use-package company
   :ensure t
@@ -132,14 +132,14 @@
 (use-package tramp
   :ensure t)
 
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode)))
-(add-hook 'web-mode-hook
-          (lambda ()
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
+;; (use-package web-mode
+;;   :ensure t
+;;   :config
+;;   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode)))
+;; (add-hook 'web-mode-hook
+;;           (lambda ()
+;;             (when (string-equal "tsx" (file-name-extension buffer-file-name))
+;;               (setup-tide-mode))))
 
 (use-package yaml-mode
   :ensure t
@@ -175,6 +175,8 @@
   :ensure t
   :config (global-prettier-mode))
 
+(add-hook 'after-init-hook #'global-prettier-mode)
+
 (defun setup-tide-mode()
   "Configure tide mode."
   (interactive)
@@ -182,19 +184,25 @@
   (flycheck-mode +1)
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
+  ;;(tide-hl-identifier-mode +1)
+  (company-mode +1)
+  (prettier-mode +1))
 
 (use-package tide
   :ensure t
   :after (company flycheck exec-path-from-shell)
+  :hook ((typescript-ts-mode . tide-setup)
+         (typescript-ts-mode . tide-hl-identifier-mode)
+         (tsx-ts-mode . tide-setup))
   :bind (("C-c t i" . tide-organize-imports)
          ("C-c t s" . tide-rename-symbol)
          ("C-c t r" . tide-references)
          ("C-c t c" . tide-refactor)
          ("C-c t j" . tide-jsdoc-template)
          ("C-c t f" . tide-fix)))
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(add-hook 'typescript-ts-mode-hook #'setup-tide-mode)
+(add-hook 'tsx-ts-mode-hook #'setup-tide-mode)
 
 (use-package org-journal
   :ensure t
