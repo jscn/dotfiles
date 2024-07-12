@@ -1,24 +1,33 @@
+[user]
+  name = Josh Crompton
+  email = josh.crompton@gmail.com
+
 [alias]
-  st = status
-  ci = commit
   br = branch
+  ci = commit
   co = checkout
   df = diff
-  lg = log -p
+  dump = cat-file -p
   gr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  lg = log -p
+  rp = remote prune origin
+  st = status
+  type = cat-file -t
 
-[user]
-	name = Josh Crompton
-	email = josh.crompton@gmail.com
 [credential]
-	helper = cache
+  helper = cache
+
 [color]
-	ui = true
-	diff = auto
-	status = auto
-	branch = auto
+  ui = true
+  diff = auto
+  status = auto
+  branch = auto
+
 [push]
-	default = simple
+  default = simple
+
 [core]
-	excludesfile = /home/jscn/.gitignore_global
-	editor = emacsclient -c
+  excludesfile = /home/jscn/.gitignore_global
+  editor = emacsclient -c
+  helper = manager-core
